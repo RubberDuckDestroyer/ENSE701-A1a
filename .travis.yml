@@ -8,9 +8,9 @@ cache:
     - node_modules
     
 script:
-  - npm run test
   - npm run build
-  - exit 0
+  - npm run test
+  - travis_terminate 1
   
 deploy: 
   provider: heroku
