@@ -10,20 +10,17 @@ const { StaticApp } = require('@keystonejs/app-static');
 const { staticRoute, staticPath, distDir } = require('./config');
 const { User, Post, PostCategory, Comment } = require('./schema');
 
-console.log(process.env.CONNECT_TO);
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 const keystone = new Keystone({
   name: 'Keystone Demo Blog',
-  adapter: new MongooseAdapter({mongoUri: 'mongodb+srv://blogger:RedHat@cluster0-hvhky.mongodb.net/test?retryWrites=true&w=majority'}),
-  onConnect: async () => {
-    // Initialise some data.
-    // NOTE: This is only for demo purposes and should not be used in production
-    const users = await keystone.lists.User.adapter.findAll();
-    if (!users.length) {
-      const initialData = require('./initialData');
-      await keystone.createItems(initialData);
-    }
-  },
+  adapter: new MongooseAdapter({mongoUri: process.env.CONNECT_TO}),
+  cookieSecret= process.env.SESSION_KEY,
+  secureCookies= false,
+  sessionStore: new MongoStore({
+    url: process.env.CONNECT_TO
+  })
 });
 
 keystone.createList('User', User);
