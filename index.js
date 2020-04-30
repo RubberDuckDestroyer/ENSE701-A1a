@@ -12,12 +12,13 @@ const { User, Post, PostCategory, Comment } = require('./schema');
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const dotenv = require('dotenv').config();
 
 const keystone = new Keystone({
   name: 'Keystone Demo Blog',
   adapter: new MongooseAdapter({mongoUri: process.env.CONNECT_TO}),
-  cookieSecret= process.env.SESSION_KEY,
-  secureCookies= false,
+  cookieSecret: process.env.SESSION_KEY,
+  secureCookies: false,
   sessionStore: new MongoStore({
     url: process.env.CONNECT_TO
   })
