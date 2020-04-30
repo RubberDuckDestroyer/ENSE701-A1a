@@ -2,22 +2,19 @@ language: node_js
 
 node_js:
  - "stable"
-
+ 
 cache:
   directories:
     - node_modules
-
-install: 
-  - npm install
-
+    
 script:
   - npm run test
   - npm run build
-
+  
 deploy: 
   provider: heroku
   app: keystone-blog
   project: ./dist/
-
+  
 on:
   branch: master
