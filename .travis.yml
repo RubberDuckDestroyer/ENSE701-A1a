@@ -6,16 +6,4 @@ node_js:
 cache:
   directories:
     - node_modules
-    
-script:
-  - npm run build
-  - npm run test
-  - travis_terminate 1
-  
-deploy: 
-  provider: heroku
-  app: keystone-blog
-  project: ./dist/
-  
-on:
-  branch: master
+
