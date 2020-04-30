@@ -12,7 +12,7 @@
     "dev": "cross-env NODE_ENV=development DISABLE_LOGGING=true keystone dev",
     "build": "cross-env NODE_ENV=production keystone build",
     "start": "cross-env NODE_ENV=production keystone start",
-    "test": "mocha"
+    "test": "mocha --exit"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
@@ -37,6 +37,7 @@
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
     "apollo-upload-client": "^12.1.0",
+    "connect-mongo": "^3.2.0",
     "cross-env": "^7.0.0",
     "date-fns": "^1.30.1",
     "dotenv": "^8.2.0",
@@ -53,6 +54,6 @@
   "repository": "https://github.com/keystonejs/keystone/tree/master/demo-projects/blog",
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^7.1.1"
+    "mocha": "^7.1.2"
   }
 }
